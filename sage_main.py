@@ -10,7 +10,7 @@ import os
 import pyjokes
 
 
-#  voice settings by ishita
+#  voice settings 
 engine = pyttsx3.init('sapi5') #microsoft speech API
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
