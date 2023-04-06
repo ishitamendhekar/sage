@@ -11,6 +11,7 @@ import os
 import platform
 import subprocess
 import pyjokes
+import sqlite3
 #from dbcreate import addlog
 
 #  voice settings
@@ -100,8 +101,9 @@ if __name__ == "__main__":
             speak("My address is in your computer")
             from dbcreate import addlog
             addlog(MyQuery)
-        elif "which operating system am i using" in MyQuery:
+        elif "operating system" in MyQuery:
             speak("Your operating system is"+ platform)
+            print(platform)
             from dbcreate import addlog
             addlog(MyQuery)
         elif "bye" in MyQuery:
@@ -110,16 +112,46 @@ if __name__ == "__main__":
             addlog(MyQuery)
             exit()
 
+
+        # see logs
+        elif "complete activity" in MyQuery:
+            speak("here is your activity log")
+            conn = sqlite3.connect('Sage.db')
+            cursor = conn.execute("SELECT * FROM ActivityLogs ORDER BY QueryNo DESC") 
+            for row in cursor:
+                print(row)
+            conn.close()
+            from dbcreate import addlog
+            addlog(MyQuery)
+        
+        elif "recent activity" in MyQuery:
+            speak("here is your activity log")
+            conn = sqlite3.connect('Sage.db')
+            cursor = conn.execute("SELECT * FROM ActivityLogs ORDER BY QueryNo DESC LIMIT 5") 
+            for row in cursor:
+                print(row)
+            conn.close()
+            from dbcreate import addlog
+            addlog(MyQuery)
+
+
+
         #  news
         elif "today's news" in MyQuery:
             from getNews import todays_news
             todays_news()
+            from dbcreate import addlog
+            addlog(MyQuery)
         elif "today's latest news" in MyQuery:
             from getNews import todays_news
             todays_news()
+            from dbcreate import addlog
+            addlog(MyQuery)
         elif "latest news" in MyQuery:
             from getNews import todays_news
             todays_news()
+            from dbcreate import addlog
+            addlog(MyQuery)
 
         #open any installed app 
         elif "launch" in MyQuery:
