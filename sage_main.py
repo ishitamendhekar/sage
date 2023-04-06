@@ -15,7 +15,7 @@ import sqlite3
 #from dbcreate import addlog
 
 #  voice settings
-engine = pyttsx3.init('sapi5') #microsoft speech API
+engine = pyttsx3.init('sapi5') 
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 engine.setProperty('rate' , 190)
@@ -34,7 +34,7 @@ platform= platform.system()
 #  taking spoken words from microphone as input
 def command_me():
     with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source, duration=5) #to recognize threshold noise level--pehele 0.2 tha
+        r.adjust_for_ambient_noise(source, duration=5) #to recognize threshold noise level
         print("Listening...")
         audio1=r.listen(source) #get input from user
 
