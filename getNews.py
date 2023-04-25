@@ -17,7 +17,7 @@ r= sr.Recognizer()
 
 def command_me():
     with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source, duration=5) #to recognize threshold noise level--pehele 0.2 tha
+        r.adjust_for_ambient_noise(source, duration=5) #to recognize threshold noise level--pehele 0.2 pr test kiya tha
         print("Listening...")
         audio1=r.listen(source) #get input from user
 
